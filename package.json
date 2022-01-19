@@ -1,0 +1,33 @@
+{
+  "name": "breakout",
+  "version": "1.0.0",
+  "description": "use typescript create breakout game",
+  "private": true,
+  "scripts": {
+    "ts-dev": "tsc -w",
+    "ts-build": "tsc",
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JiaWei-Hong/breakout.git"
+  },
+  "keywords": [
+    "breakout",
+    "game"
+  ],
+  "author": "Jiawei",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JiaWei-Hong/breakout/issues"
+  },
+  "homepage": "https://github.com/JiaWei-Hong/breakout#readme",
+  "dependencies": {
+    "path": "^0.12.7",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.4",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
