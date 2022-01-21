@@ -4,3 +4,6 @@ interface Drawable {
 
     draw(): void;
 }
+
+
+export default Drawable;
