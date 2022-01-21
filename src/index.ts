@@ -35,7 +35,10 @@ class Breakout {
             if (ballDy < this.ball.radius) {
                 this.ball.position.dy = -this.ball.position.dy;
             } else if (ballDy > Canvas.height - this.ball.radius) {
-                if (this.ball.position.x > this.paddle.position.x / 2) {
+                if (
+                    this.ball.position.x >= this.paddle.position.x - this.paddle.width / 2 &&
+                    this.ball.position.x <= this.paddle.position.x + this.paddle.width / 2
+                ) {
                     this.ball.position.dy = -this.ball.position.dy;
                 } else {
                     clearInterval(this.interval);
