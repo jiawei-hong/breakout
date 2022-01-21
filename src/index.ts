@@ -41,6 +41,19 @@ class Breakout {
             const ballDx: number = this.ball.position.x + this.ball.position.dx;
             const ballDy: number = this.ball.position.y + this.ball.position.dy;
 
+            this.blocks.forEach((block, i) => {
+                if (
+                    this.ball.position.x > block.position.x - Block.width &&
+                    this.ball.position.x < block.position.x + Block.width &&
+                    this.ball.position.y > block.position.y &&
+                    this.ball.position.y < block.position.y + Block.height
+                ) {
+                    this.blocks.splice(i, 1);
+                    this.ball.position.dx = Math.abs(this.ball.position.dx);
+                    this.ball.position.dy = Math.abs(this.ball.position.dy);
+                }
+            })
+
             if (ballDx > Canvas.width - this.ball.radius || ballDx < this.ball.radius) {
                 this.ball.position.dx = -this.ball.position.dx;
             }
