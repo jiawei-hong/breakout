@@ -2,13 +2,14 @@ import Canvas from "./canvas";
 import Drawable from './interface';
 
 class Block implements Drawable {
-    width: number;
-    height: number;
+    static width: number = 75;
+    static height: number = 20;
+    static padding: number = 20;
+    static offsetTop: number = 80;
+    static offsetLeft: number = 40;
     position: Position;
 
     constructor(props: Position) {
-        this.width = 30;
-        this.height = 10;
         this.position = props;
     }
 
@@ -17,8 +18,8 @@ class Block implements Drawable {
         Canvas.ctx.fillRect(
             this.position.x,
             this.position.y,
-            this.width,
-            this.height
+            Block.width,
+            Block.height
         );
         Canvas.ctx.fill();
         Canvas.ctx.closePath();

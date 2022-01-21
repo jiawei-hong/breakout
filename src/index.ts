@@ -14,7 +14,20 @@ class Breakout {
     constructor() {
         this.ball = new Ball();
         this.paddle = new Paddle();
-        this.blocks = [new Block()];
+        this.blocks = [];
+
+        for (let i = 0; i <= 9; i++) {
+            for (let j = 0; j < 4; j++) {
+                let block = new Block({
+                    x: i * (Block.width + Block.padding) + Block.offsetLeft,
+                    y: j * (Block.width + Block.padding) + Block.offsetTop,
+                    dx: 0,
+                    dy: 0
+                });
+
+                this.blocks.push(block);
+            }
+        }
     }
 
     draw() {
