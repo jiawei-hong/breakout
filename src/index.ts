@@ -7,6 +7,7 @@ import './type'
 
 class Breakout {
     interval: number | undefined;
+    score: number;
     ball: Ball;
     paddle: Paddle;
     blocks: Array<Block>;
@@ -15,9 +16,10 @@ class Breakout {
         this.ball = new Ball();
         this.paddle = new Paddle();
         this.blocks = [];
+        this.score = 0;
 
-        for (let i = 0; i <= 9; i++) {
-            for (let j = 0; j < 4; j++) {
+        for (let i = 0; i <= 0; i++) {
+            for (let j = 0; j < 1; j++) {
                 let block = new Block({
                     x: i * (Block.width + Block.padding) + Block.offsetLeft,
                     y: j * (Block.width + Block.padding) + Block.offsetTop,
@@ -34,6 +36,7 @@ class Breakout {
         this.paddle.bindKeyboardEvent();
         this.interval = window.setInterval(() => {
             Canvas.clear();
+            Canvas.drawScore(this.score.toString());
             this.ball.draw();
             this.paddle.draw();
             this.blocks.forEach(block => block.draw());
@@ -41,18 +44,25 @@ class Breakout {
             const ballDx: number = this.ball.position.x + this.ball.position.dx;
             const ballDy: number = this.ball.position.y + this.ball.position.dy;
 
-            this.blocks.forEach((block, i) => {
-                if (
-                    this.ball.position.x > block.position.x - Block.width &&
-                    this.ball.position.x < block.position.x + Block.width &&
-                    this.ball.position.y > block.position.y &&
-                    this.ball.position.y < block.position.y + Block.height
-                ) {
-                    this.blocks.splice(i, 1);
-                    this.ball.position.dx = Math.abs(this.ball.position.dx);
-                    this.ball.position.dy = Math.abs(this.ball.position.dy);
-                }
-            })
+            if (this.blocks.length > 0) {
+                this.blocks.forEach((block, i) => {
+                    if (
+                        this.ball.position.x > block.position.x - Block.width &&
+                        this.ball.position.x < block.position.x + Block.width &&
+                        this.ball.position.y > block.position.y &&
+                        this.ball.position.y < block.position.y + Block.height
+                    ) {
+                        this.blocks.splice(i, 1);
+                        this.ball.position.dx = Math.abs(this.ball.position.dx);
+                        this.ball.position.dy = Math.abs(this.ball.position.dy);
+                        this.score += 1;
+                    }
+                })
+            } else {
+                alert('Congratulations!!!');
+                clearInterval(this.interval);
+                location.reload();
+            }
 
             if (ballDx > Canvas.width - this.ball.radius || ballDx < this.ball.radius) {
                 this.ball.position.dx = -this.ball.position.dx;

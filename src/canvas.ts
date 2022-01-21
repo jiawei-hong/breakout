@@ -7,6 +7,11 @@ class Canvas {
     public static clear() {
         this.ctx.clearRect(0, 0, this.width, this.height);
     }
+
+    public static drawScore(score: string) {
+        this.ctx.font = '30px Arial';
+        this.ctx.fillText(`Score: ${score}`, 20, 40);
+    }
 }
 
 export default Canvas;
